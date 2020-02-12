@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: sample-microservice
-        image: 107995894928.dkr.ecr.us-west-2.amazonaws.com/sample-microservice:latest
+        image: docker-registry.ranchers.xyz/sample-microservice:latest
         resources:
           limits:
             memory: "128Mi"
