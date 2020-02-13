@@ -20,6 +20,8 @@ spec:
         app.kubernetes.io/name: {{ include "sample-microservice.name" . }}
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
+      imagePullSecrets:
+        - name: docker-registry
       containers:
         - name: {{ .Chart.Name }}
           image: {{ .Values.image.repository }}
@@ -50,3 +52,4 @@ spec:
       tolerations:
 {{ toYaml . | indent 8 }}
     {{- end }}
+      
