@@ -1,14 +1,11 @@
-# A Go multistage docker file
-FROM golang:alpine as builder
-RUN mkdir /build 
-ADD . /build/
-WORKDIR /build 
-RUN go build -o main .
-FROM alpine
-ENV PORT 8080
-EXPOSE 8080
-RUN adduser -S -D -H -h /app appuser
-USER appuser
-COPY --from=builder /build/main /app/
+FROM node:alpine3.10
+# FROM node:10-alpine
+ENV http_proxy http://proxy.hcm.fpt.vn:80/
+ENV https_proxy http://proxy.hcm.fpt.vn:80/
+RUN mkdir /app
+COPY index.js /app
 WORKDIR /app
-CMD ["./main"]
+RUN npm install express
+EXPOSE 4444
+
+CMD ["node", "index.js"]
