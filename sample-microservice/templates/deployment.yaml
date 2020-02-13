@@ -21,7 +21,7 @@ spec:
         app.kubernetes.io/instance: {{ .Release.Name }}
     spec:
       imagePullSecrets:
-        - name: docker-registry
+        - name: registry
       containers:
         - name: {{ .Chart.Name }}
           image: {{ .Values.image.repository }}
